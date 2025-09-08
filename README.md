@@ -24,7 +24,7 @@ This repo is mainly for my personal tracking, but if you spot improvements or op
 
 ## 📬 Contact
 - **Author:** Arpit Kumar  
-- **E-mail:** [](arpitkumar19842@gmail.com)
+- **E-mail:** [arpitkumar19842@gmail.com]
 - **Linkedin:** [Arpit-Kumar](https://www.linkedin.com/in/arpit-kumar-569361296/)  
 
 ---
