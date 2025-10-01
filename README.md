@@ -5,9 +5,8 @@ I regularly update this repo whenever I solve a new problem.
 
 ---
 
-## 🛠️ Languages & Tools
+## 🛠️ Language
 - **C++** 
-- Git & GitHub for version control
 
 ---
 
