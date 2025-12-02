@@ -1,16 +1,29 @@
 class Solution {
 public:
-/*
-    Given an array nums of size n, return the majority element.
-
-The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
-*/
     int majorityElement(vector<int>& nums) {
-        int n = nums.size();
-        sort(nums.begin(), nums.end());
-        if(n==1) return nums[0];
-        else if(n%2 == 0) return nums[n/2-1];
-        else return nums[n/2];
-        return 0;
+        // sort(nums.begin(),nums.end());
+        // return nums[nums.size()/2];
+
+        // unordered_map<int,int> m;
+        // for(int i = 0; i < nums.size(); i++){
+        //     m[nums[i]]++;
+        // }
+        // for(auto it : m){
+        //     if(it.second > nums.size()/2) return it.first;
+        // }
+        // return -1;
+        if(nums.size() == 1) return nums[0];
+        int ele = nums[0];
+        int count = 1;
+        for(int i = 1; i < nums.size(); i++){
+            if(count == 0){
+                ele = nums[i];
+                count = 1;
+            }
+            else if(nums[i]==ele) count++;
+            else count--;
+        }
+        return ele;
+
     }
 };
