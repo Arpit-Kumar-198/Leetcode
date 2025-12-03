@@ -12,6 +12,22 @@ public:
         }
         return profit;
 
+        // int n = prices.size();
+        // int p = 0;
+
+        // int profit = INT_MIN;
+        // int tempProfit = 0;
+
+        // for(int i = 0; i < n; i++){
+        //     tempProfit = prices[i] - prices[p];
+        //     profit = max(profit,tempProfit);
+        //     if(tempProfit < 0){
+        //         tempProfit = 0;
+        //         p = i;
+        //     }
+        // }
+        // return profit;
+
         
     }
 };
