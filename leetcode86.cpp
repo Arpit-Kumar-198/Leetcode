@@ -9,36 +9,29 @@
  * };
  */
 class Solution {
-    public:
-        ListNode* partition(ListNode* head, int x) {
-            if(head==NULL || head->next==NULL) return head;
-            ListNode* left = new ListNode(-101);
-             ListNode* l = left;
-              ListNode* c = left;
-            ListNode* right = new ListNode(-101);
-             ListNode* r = right;
-             ListNode* temp = head;
-            while(temp!=NULL){
-                if(temp->val < x){
-                    left->next = temp;
-                    left = left->next;
-                    temp = temp->next;
-                }
-                else {
-                    right->next = temp;
-                    right = right->next;
-                    temp = temp->next;
-                }
+public:
+    ListNode* partition(ListNode* head, int x) {
+        if(head == NULL || head->next == NULL) return head;
+        ListNode* i = head;
+        ListNode* res = new ListNode(-1);
+        ListNode* p = res;
+        ListNode* large = new ListNode(-1);
+        ListNode* temp = large;
+        while(i){
+            ListNode* t = i->next;
+            if(i->val < x){
+                p->next = i;
+                p = p->next;
+                if(p->next) p->next = NULL;
             }
-            left->next = NULL;
-            right->next = NULL;
-            while(l->next!=NULL){
-                l = l->next;
+            else{
+                temp->next = i;
+                temp = temp->next;
+                if(temp->next) temp->next = NULL;
             }
-            l->next = r->next;
-    
-    
-            return c->next;
-    
+            i = t;
         }
-    };
+        p->next = large->next;
+        return res->next;
+    }
+};
