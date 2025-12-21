@@ -25,8 +25,6 @@ public:
             store1 = store2;
         }
         head = temp;
-        while(temp->next != NULL) temp = temp->next;
-        temp->next = NULL;
         return head;
 
     }
