@@ -2,22 +2,24 @@ class Solution {
 public:
     int maxNumberOfBalloons(string text) {
         unordered_map<char,int> mp;
-        int m = text.size();
-        for(int i = 0; i < m; i++) {
-            if(text[i] == 'b' || text[i] == 'a' || text[i] == 'l' || text[i] == 'o' || text[i] == 'n') mp[text[i]]++;
+        for(auto ch : text) mp[ch]++;
+        int mn = INT_MAX;
+        if(mp.count('a') && mp.count('b') && mp.count('n')) mn = min(mp['a'],min(mp['b'],mp['n']));
+        else return 0;
+
+        int cnt = 0, lcnt = 0, ocnt = 0;
+        if(mp.count('l') && mp.count('o')){
+            lcnt = mp['l'];
+            ocnt = mp['o'];
         }
+        else return 0;
 
-        if(mp.size() < 5) return 0;
+        int secmn = min(lcnt,ocnt);
+        secmn /= 2;
 
-        int n1 = min(mp['b'],min(mp['a'],mp['n']));
-        int n2 = min(mp['l'],mp['o']);
+        if(secmn < mn) return secmn;
+        else if(secmn == mn) return mn;
+        return mn;
 
-        if(n1*2 == n2) return n1;
-
-        while(n1*2 > n2){
-            n1--;
-        }
-        return n1;
-        
     }
 };
