@@ -9,40 +9,30 @@
  * };
  */
 class Solution {
-    public:
-        ListNode* middleNode(ListNode* head) {
-            
-            // int size = 0;
-            // ListNode* midNode = NULL;
-            // ListNode* temp = head;
-            // while(temp != NULL){
-            //     size++;
-            //     temp = temp->next;
-            // }
-            // delete temp;
-            // int p = size/2 + 1;
-            // int p2 = 1;
-            //     ListNode* t = head;
-            //     while(p2 != p){
-            //         t = t->next;
-            //         p2++;
-            //     }
-            //     if(size == 1) return head;
-                
-            //   return  midNode = t;
+public:
+    ListNode* middleNode(ListNode* head) {
+        // int len = 0;
+        // ListNode* temp = head;
+        // while(temp) {
+        //     len++;
+        //     temp = temp->next;
+        // }
+        // if(len == 0 || len == 1) return head;
+        // if(len == 2) return head->next;
+        // temp = head;
+        // int idx = 1;
+        // while(temp && idx < len/2) {
+        //     temp = temp->next;
+        //     idx++;
+        // }
+        // return temp->next;
 
-
-
-
-
-            //Slow and fast pointer technique       interviewer ko yhi chahiye
-            ListNode* slow = head;
-            ListNode* fast = head;
-    
-            while(fast != NULL && fast->next != NULL){
-                slow = slow->next;
-                fast = fast->next->next;
-            }
-            return slow;  
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while(fast != NULL && fast->next != NULL) {
+            slow = slow->next;
+            fast = fast->next->next;
         }
-    };
+        return slow;
+    }
+};
