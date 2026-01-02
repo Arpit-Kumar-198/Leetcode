@@ -16,13 +16,12 @@ public:
         // }
         // return false;
         unordered_map<int,int> mp;
-        for(int i = 0; i < n; i++) mp[nums[i]] = i;
-
-        for(int i = 0; i < n; i++){
-            if(mp.count(nums[i])){
-                if(i != mp[nums[i]] && abs((int)i-(int)mp[nums[i]]) <= k) return true;
-                else mp[nums[i]] = i;
+        for(int i = 0; i < nums.size(); i++) mp[nums[i]] = -1;
+        for(int i = 0; i < nums.size(); i++) {
+            if(mp[nums[i]] != -1){
+                if(i - mp[nums[i]] <= k) return true;
             }
+            mp[nums[i]] = i;
         }
         return false;
     }
