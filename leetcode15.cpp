@@ -1,11 +1,5 @@
 class Solution {
 public:
-bool present(vector<vector<int>>& res, vector<int>& v){
-    for(int i = 0; i < res.size(); i++){
-        if(res[i] == v) return true;
-    }
-    return false;
-}
     vector<vector<int>> threeSum(vector<int>& nums) {
         int n = nums.size();
         sort(nums.begin(),nums.end());
