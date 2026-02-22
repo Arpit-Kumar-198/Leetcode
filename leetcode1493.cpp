@@ -2,38 +2,37 @@ class Solution {
 public:
     int longestSubarray(vector<int>& nums) {
         int n = nums.size();
-        int c0 = 0;
-        int maxLen = INT_MIN;
-        int len = 0;
-
-        int i = 0, j = 0;
-
-        while(j < n)
-        {
-            if(j==0 && nums[j]==0) {
-                c0 = 1;
-                j++;
+        int ans = 0, i = 0, j = 0, n0 = 0;
+        // while(i < n && j < n){
+        //     if(nums[j] == 1) {
+        //         if(n0 != 0) ans = max(ans,j-i);
+        //         else ans = max(ans,j-i+1);
+        //     }
+        //     else{
+        //         if(n0 == 0){
+        //             n0++;
+        //             if(n0 != 0) ans = max(ans,j-i);
+        //             else ans = max(ans,j-i+1);
+        //         }
+        //         else{
+        //             while(i < n && nums[i] != 0) i++;
+        //             i++;
+        //         }
+        //     }
+        //     j++;
+        // }
+        // if(j == n && n0 == 0) return ans-1;
+        // return ans;
+        
+        while(j < n){
+            if(nums[j] == 0) n0++;
+            while(n0 > 1){
+                if(nums[i] == 0) n0--;
+                i++;
             }
-            else if(nums[j]==1) j++;
-            else
-            {
-                if(c0 == 0)
-                {
-                    c0 = 1;
-                    j++;
-                }
-                else
-                {
-                    len = j-i-1;
-                    maxLen = max(maxLen,len);
-                    while(nums[i]==1) i++;
-                    i++,j++;
-                }
-            }
+            ans = max(ans,j-i); // delete exactly 1 element 
+            j++;
         }
-        len = j-i-1;
-        maxLen =max(maxLen,len);
-        if(c0 == 0) return nums.size()-1;
-        else return maxLen;
+        return ans;
     }
 };
