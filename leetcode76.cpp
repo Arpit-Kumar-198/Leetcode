@@ -1,53 +1,38 @@
 class Solution {
 public:
-    string minWindow(string s, string t){
-        unordered_map<char,int> mp;
-        int m = s.size();
-        int n = t.size();
-        for(int i = 0; i < n; i++) mp[t[i]]++;
+bool compare(unordered_map<char,int>& mp1, unordered_map<char,int>& mp2){
+    for(auto it : mp2){
+        if(mp1[it.first] < it.second)
+            return false;
+    }
+    return true;
+}
+    string minWindow(string s, string t) {
+        int m = s.size(), n = t.size();
+        if(m < n) return "";
+        unordered_map<char,int> mp1, mp2;
+        for(auto ch : t) mp2[ch]++;
 
-        int mnlen = INT_MAX;
-        string res = "";
-        int idx1 = -1, len = 0;
-        int i = 0,j = 0, size = 0;
-        while(j < m){
-
-                if(size == n){
-                    while(mp.find(s[i]) == mp.end()) i++;
-                    if(j-i < mnlen){
-                        mnlen = j-i;
-                        idx1 = i, len = mnlen;
-                    }
-                    if(mp[s[i]] == 0) size--;
-                    mp[s[i]]++;
-                    i++;
-                   
-                }
-                else {
-                    if(mp.find(s[j]) != mp.end()){
-                        mp[s[j]]--;
-                        if(mp[s[j]] >= 0) size++;
-                    }
-                    j++;
-                }
+        int i = 0, j = 0, sidx = -1, eidx = -1, ans = INT_MAX;
+        while(j < m && i < m){
+            if(mp2.count(s[j])) mp1[s[j]]++;
             
-            
-        }
-        while(i < m){
-                if(size == n){
-                    while(mp.find(s[i]) == mp.end()) i++;
-                    if(j-i < mnlen){
-                        mnlen = j-i;
-                        idx1 = i, len = mnlen;
+            if(compare(mp1,mp2)){
+                while(i < m && compare(mp1,mp2)){
+                    if(j-i+1 < ans){
+                        sidx = i;
+                        eidx = j;
+                        ans = j-i+1;
                     }
-                    if(mp[s[i]] >= 0) size--;
-                    mp[s[i]]++;
+                    if(mp2.count(s[i])) mp1[s[i]]--;
+                    if(mp1[s[i]] == 0) mp1.erase(s[i]);
                     i++;
-                   
                 }
-                else i++;
+                while(i < m && mp2.count(s[i]) == 0) i++;
+            }
+            j++;
         }
-        if(idx1 != -1) res = s.substr(idx1,len);
-        return res;
+        if(sidx != -1 && eidx != -1) return s.substr(sidx, ans);
+        return "";
     }
 };
