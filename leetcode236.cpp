@@ -13,7 +13,7 @@ class Solution {
         if(root==NULL) return false;
         if(root==tgt) return true;
         return exist(root->left,tgt) || exist(root->right,tgt);
-    }
+    }leet
         TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
             if(root==p || root==q) return root;
             else if(exist(root->left,p) && exist(root->right,q)) return root;
