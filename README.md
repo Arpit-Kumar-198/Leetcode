@@ -7,12 +7,12 @@ I regularly update this repo whenever I solve a new problem.
 
 ## 🛠️ Language
 - **C++**
-<p align="center">
+<p align="start">
   <a href="https://leetcode.com/u/Arpit_kumar198/">
     <img src="https://img.shields.io/badge/LeetCode-1600+-FFA116?logo=leetcode&logoColor=white" />
   </a>
 </p>
-<p align="center">
+<p align="start">
   🟠 <b>LeetCode:</b> 300+ Problems Solved <br>
 </p>
 
