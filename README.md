@@ -6,7 +6,15 @@ I regularly update this repo whenever I solve a new problem.
 ---
 
 ## 🛠️ Language
-- **C++** 
+- **C++**
+<p align="center">
+  <a href="https://leetcode.com/u/Arpit_kumar198/">
+    <img src="https://img.shields.io/badge/LeetCode-1600+-FFA116?logo=leetcode&logoColor=white" />
+  </a>
+</p>
+<p align="center">
+  🟠 <b>LeetCode:</b> 300+ Problems Solved <br>
+</p>
 
 ---
 
