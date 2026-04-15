@@ -21,20 +21,23 @@ These are the only two combinations.
 #include<iostream>
 #include<vector>
 using namespace std;
-void combination(vector<int> v, vector<int> ans, int n, int target){
-    if(target == 0)
-    {
-         for(int i = 0; i < ans.size(); i++) cout << ans[i];
-         cout << endl;
-         return;
+void solve(int idx, int tgt, vector<int>& arr, vector<int>& temp, vector<vector<int>>& ans){
+    if(tgt < 0) return;
+    if(tgt == 0){
+        ans.push_back(temp);
+        return;
     }
-    if(target < 0) return;
-   for(int i = 0; i < n; i++)
-   {
-    ans.push_back(v[i]);
-    combination(v,ans,n,target-v[i]);
-    ans.pop_back();
-   }
+    for(int i = idx; i < arr.size(); i++){
+        temp.push_back(arr[i]);
+        solve(i, tgt-arr[i], arr, temp, ans);
+        temp.pop_back();
+    }
+}
+vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+    vector<int> temp;
+    vector<vector<int>> ans;
+    solve(0, target, candidates, temp, ans);
+    return ans;
 }
 int main()
 {
@@ -49,7 +52,14 @@ int main()
     }
     int target;
     cin >> target;
-    vector<int> ans;
-    combination(v,ans,n,target);
+    vector<vector<int>> ans = combinationSum(v, target);
+    for(auto vec : ans){
+        cout << "[";
+        for (int i = 0; i < vec.size(); i++){
+            if(i < vec.size()-1) cout << vec[i] << ",";
+            else cout << vec[i];
+        }
+        cout << "]" << endl;
+    }
     return 0;
 }
