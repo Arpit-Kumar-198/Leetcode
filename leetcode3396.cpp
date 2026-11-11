@@ -1,40 +1,33 @@
 class Solution {
-    public:
-    /*
-        3396. Minimum Number of Operations to Make Elements in Array Distinct
-Solved
-Easy
-Topics
-Companies
-Hint
-You are given an integer array nums. You need to ensure that the elements in the array are distinct. To achieve this, you can perform the following operation any number of times:
+public:
+    bool check(unordered_map<int,int>& mp){
+        for(auto it : mp){
+            if(it.second > 1) return false;
+        }
+        return true;
+    }
+    int minimumOperations(vector<int>& nums) {
+        int n = nums.size();
+        unordered_map<int,int> mp;
+        for(auto num : nums) mp[num]++;
+        if(n == 1 || check(mp)) return 0;
+        if(n == 2) {
+            if(nums[0] == nums[1]) return 1;
+            else return 0;
+        }
 
-Remove 3 elements from the beginning of the array. If the array has fewer than 3 elements, remove all remaining elements.
-Note that an empty array is considered to have distinct elements. Return the minimum number of operations needed to make the elements in the array distinct.
-    */
-        int minimumOperations(vector<int>& nums) {
-            int n = nums.size();
-            int op = 0;
-            for(int i = 0; i < n-1; i++){
-                int c = 0;
-                for(int j = i+1; j < n; j++){
-                    if(nums[j]==nums[i]){
-                        c = 1;
-                        break;
-                    }
-                }
-    
-                if(c==1){
-                    if((i+1)%3 == 0) {
-                        op = (i+1)/3;
-                    }
-                    else{
-                         op = (i+1)/3 + 1;
-                         i = i%3 + i;
-                    }
-                }
-             
-            }
-            return op;
-      }
-    };
+        int ans = 0, i = 0;
+        while(i < n){
+            if(i < n) mp[nums[i]] -= 1;
+            if(i+1 < n) mp[nums[i+1]] -= 1;
+            if(i+2 < n) mp[nums[i+2]] -= 1;
+
+            ans += 1;
+
+            if(check(mp)) return ans;
+
+            i += 3;
+        }
+        return ans;
+    }
+};
